@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+</head>
+
+<body>
+    <div style="display: flex; justify-content: center; align-items: center;"></div>
+    <div style="  display: grid; grid-template-columns: repeat(3, 0fr);  justify-content: center;">
+        <div class="box" onclick="Ischecked(this)"
+            style="width: 40px; height: 40px; border: 2px solid black; background-color: beige; color: black;" 
+            id="1"></div>
+        <div class="box" onclick="Ischecked(this)"
+            style="width: 40px; height: 40px; border: 2px solid black; background-color: beige; color: black;" 
+            id="2"></div>
+        <div class="box" onclick="Ischecked(this)"
+            style="width: 40px; height: 40px; border: 2px solid black; background-color: beige; color: black;" 
+            id="3"></div>
+        <div class="box" onclick="Ischecked(this)"
+            style="width: 40px; height: 40px; border: 2px solid black; background-color: beige; color: black;" 
+            id="4"></div>
+        <div class="box" onclick="Ischecked(this)"
+            style="width: 40px; height: 40px; border: 2px solid black; background-color: beige; color: black;" 
+            id="5"></div>
+        <div class="box" onclick="Ischecked(this)"
+            style="width: 40px; height: 40px; border: 2px solid black; background-color: beige; color: black;" 
+            id="6"></div>
+        <div class="box" onclick="Ischecked(this)"
+            style="width: 40px; height: 40px; border: 2px solid black; background-color: beige; color: black;" 
+            id="7"></div>
+        <div class="box" onclick="Ischecked(this)"
+            style="width: 40px; height: 40px; border: 2px solid black; background-color: beige; color: black;" 
+            id="8"></div>
+        <div class="box" onclick="Ischecked(this)"
+            style="width: 40px; height: 40px; border: 2px solid black; background-color: beige; color: black;" 
+            id="9"></div>
+    </div>
+    </div>
+
+    <script>
+        let isTrue = true;
+        const pl1=[]
+        const pl2=[]
+
+        function Ischecked(element) {
+            if(!element.classList.contains("Checked")){
+            if (isTrue ) {
+                element.textContent = "✓"
+                isTrue=false
+                pl1.push(Number(element.id))
+
+
+            } 
+            
+            else if (!isTrue) {
+                element.textContent = "⁕"
+                isTrue=true
+                pl2.push(Number(element.id));
+
+            }
+            element.classList.add("Checked")
+            checkForWin(pl1 , "Player 1")
+            checkForWin(pl2 , "Player 2")
+
+            if (pl1.length + pl2.length === 9) {
+                    alert("It's a Draw!");
+                }
+        }
+    }
+
+        function checkForWin(moves , playerName) {
+            const winningCombos = [
+                [1, 2, 3],
+                [4, 5, 6],
+                [7, 8, 9],
+                [1, 4, 7],
+                [2, 5, 8],
+                [3, 6, 9],
+                [1, 5, 9],
+                [3, 5, 7]
+            ];
+            for (const comb  of winningCombos){
+                if (comb.every(element=> moves.includes(element))) {
+                    alert(playerName + " " + "WON")
+                    
+                }
+                
+            }
+
+        }
+
+
+    </script>
+
+
+
+</body>
+
+</html>
